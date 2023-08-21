@@ -1,5 +1,15 @@
-//
+import { useFormik } from 'formik';
+
 export default function AddBookPage() {
+  const formik = useFormik({
+    initialValues: {
+      title: '',
+      author: '',
+      year: '',
+    },
+  });
+
+  console.log('formik.values', formik.values);
   return (
     <div className="container">
       <h1 className="text-3xl font-bold underline pb-4">Add book</h1>
@@ -7,6 +17,9 @@ export default function AddBookPage() {
       <form className="grid gap-2 ">
         <div>
           <input
+            onChange={formik.handleChange}
+            value={formik.values.title}
+            id="title"
             className="block py-1 px-2 border border-slate-500 "
             type="text"
             placeholder="title"
@@ -15,6 +28,9 @@ export default function AddBookPage() {
 
         <div>
           <input
+            onChange={formik.handleChange}
+            value={formik.values.author}
+            id="author"
             className="block py-1 px-2 border border-slate-500"
             type="text"
             placeholder="author"
@@ -23,14 +39,20 @@ export default function AddBookPage() {
 
         <div>
           <input
+            onChange={formik.handleChange}
+            value={formik.values.year}
+            id="year"
             className="block py-1 px-2 border border-slate-500 "
-            type="text"
+            type="number"
             placeholder="year"
           />
         </div>
 
         <div>
           <input
+            onChange={formik.handleChange}
+            value={formik.values.genre}
+            id="genre"
             className="block py-1 px-2 border border-slate-500 "
             type="text"
             placeholder="genre"
