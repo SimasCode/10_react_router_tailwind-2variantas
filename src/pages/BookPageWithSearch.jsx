@@ -14,8 +14,8 @@ export default function BookPageWithSearch() {
   const filtered = mainBooksArr.filter((bObj) =>
     bObj.title.includes(searchVal),
   );
-  console.log('filtered ===', filtered);
 
+  console.table(filtered);
   useEffect(() => {
     axios
       .get('/db/books.json')
@@ -32,20 +32,22 @@ export default function BookPageWithSearch() {
     <div className="container">
       <h1 className="text-3xl font-bold underline pb-4">Books page</h1>
       <p>See alll the books we have</p>
+
       <fieldset className="border border-slate-500 p-4 flex gap-4">
         <legend>Filter books</legend>
         <input
           onChange={handleSearchInput}
           value={searchVal}
-          className="border border-slate-400 px-3 py-2 rounded-sm"
+          className="border border-slate-400 px-3 py-1 rounded-sm"
           type="search"
           placeholder="search in title"
         />
       </fieldset>
+
       <h2 className="text-2xl font font-medium mb-2">Pick a book</h2>
       <ul>
         {/* sukti cikla per bookData ir sugeneruoti nuorodas su title */}
-        {mainBooksArr.map((bObj) => (
+        {filtered.map((bObj) => (
           <BookItem
             key={bObj.id}
             title={bObj.title}
